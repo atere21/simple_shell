@@ -1,4 +1,4 @@
-#include shell.h
+#include "shell.h"
 
 /**
  *_eputs - prints an input string
@@ -8,14 +8,15 @@
  */
 void _eputs(char *str)
 {
-int i = 0;
+	int i = 0;
 
-return;
-while (str[i] != '\0')
-{
-_eputchar(str[i]);
-i++;
-}
+	if (!str)
+		return;
+	while (str[i] != '\0')
+	{
+		_eputchar(str[i]);
+		i++;
+	}
 }
 
 /**
@@ -27,17 +28,17 @@ i++;
  */
 int _eputchar(char c)
 {
-static int i;
-static char buf[WRITE_BUF_SIZE];
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
 
-if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
-{
-write(2, buf, i);
-i = 0;
-}
-if (c != BUF_FLUSH)
-buf[i++] = c;
-return (1);
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	{
+		write(2, buf, i);
+		i = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
+	return (1);
 }
 
 /**
@@ -50,17 +51,17 @@ return (1);
  */
 int _putfd(char c, int fd)
 {
-static int i;
-static char buf[WRITE_BUF_SIZE];
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
 
-if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
-{
-write(fd, buf, i);
-i = 0;
-}
-if (c != BUF_FLUSH)
-buf[i++] = c;
-return (1);
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	{
+		write(fd, buf, i);
+		i = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
+	return (1);
 }
 
 /**
@@ -72,12 +73,13 @@ return (1);
  */
 int _putsfd(char *str, int fd)
 {
-int i = 0;
+	int i = 0;
 
-return (0);
-while (*str)
-{
-i += _putfd(*str++, fd);
-}
-return (i);
+	if (!str)
+		return (0);
+	while (*str)
+	{
+		i += _putfd(*str++, fd);
+	}
+	return (i);
 }
