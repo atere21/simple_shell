@@ -17,7 +17,7 @@ Write a README with the description of the project
 Description
 hsh is a simple UNIX command language interpreter that reads commands from either a file or standard input and executes them.
 
-####How hsh works
+#### How hsh works
 Prints a prompt and waits for a command from the user
 Creates a child process in which the command is checked
 Checks for built-ins, aliases in the PATH, and local executable programs
@@ -29,27 +29,27 @@ Works also in non interactive mode
 Compilation
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
-##Invocation
+## Invocation
 Usage: hsh [filename]
 
 To invoke hsh, compile all .c files in the repository and run the resulting executable.
 
 hsh can be invoked both interactively and non-interactively. If hsh is invoked with standard input not connected to a terminal, it reads and executes received commands in order.
 
-####Example:
+#### Example:
 
 $ echo "echo 'hello'" | ./hsh
 'hello'
 $
 If hsh is invoked with standard input connected to a terminal (determined by isatty(3)), an interactive shell is opened. When executing interactively, hsh displays the prompt $ when it is ready to read a command.
 
-####Example:
+#### Example:
 
 $./hsh
 $
 Alternatively, if command line arguments are supplied upon invocation, hsh treats the first argument as a file from which to read commands. The supplied file should contain one command per line. hsh runs each of the commands contained in the file in order before exiting.
 
-####Example:
+#### Example:
 
 $ cat test
 echo 'hello'
@@ -57,10 +57,10 @@ $ ./hsh test
 'hello'
 $
 
-####Environment
+#### Environment
 Upon invocation, hsh receives and copies the environment of the parent process in which it was executed. This environment is an array of name-value strings describing variables in the format NAME=VALUE. A few key environmental variables are:
 
-####HOME
+#### HOME
 The home directory of the current user and the default directory argument for the cd builtin command.
 
 $ echo "echo $HOME" | ./hsh
@@ -108,28 +108,28 @@ hsh interprets the $ character for variable replacement.
 $ENV_VARIABLE
 ENV_VARIABLE is substituted with its value.
 
-####Example:
+#### Example:
 
 $ echo "echo $PWD" | ./hsh
 /home/projects/alx/simple_shell
 $?
 ? is substitued with the return value of the last program executed.
 
-####Example:
+#### Example:
 
 $ echo "echo $?" | ./hsh
 0
 $$
 The second $ is substitued with the current process ID.
 
-####Example:
+#### Example:
 
 $ echo "echo $$" | ./hsh
 6494
 Comments
 hsh ignores all words and characters preceeded by a # character on a line.
 
-####Example:
+#### Example:
 
 $ echo "echo 'hello' #this will be ignored!" | ./hsh
 'hello'
@@ -139,7 +139,7 @@ hsh specially interprets the following operator characters:
 ; - Command separator
 Commands separated by a ; are executed sequentially.
 
-####Example:
+#### Example:
 
 $ echo "echo 'hello' ; echo 'world'" | ./hsh
 'hello'
@@ -147,7 +147,7 @@ $ echo "echo 'hello' ; echo 'world'" | ./hsh
 && - AND logical operator
 command1 && command2: command2 is executed if, and only if, command1 returns an exit status of zero.
 
-####Example:
+#### Example:
 
 $ echo "error! && echo 'hello'" | ./hsh
 ./hsh: 1: error!: not found
@@ -172,7 +172,7 @@ If no argument is given, the command is interpreted as cd $HOME.
 If the argument - is given, the command is interpreted as cd $OLDPWD and the pathname of the new working directory is printed to standad output.
 If the argument, -- is given, the command is interpreted as cd $OLDPWD but the pathname of the new working directory is not printed.
 The environment variables PWD and OLDPWD are updated after a change of directory.
-####Example:
+#### Example:
 
 $ ./hsh
 $ pwd
@@ -204,14 +204,15 @@ Usage: exit [STATUS]
 Exits the shell.
 The STATUS argument is the integer used to exit the shell.
 If no argument is given, the command is interpreted as exit 0.
-####Example:
+
+#### Example:
 
 $ ./hsh
 $ exit
 env
 Usage: env
 Prints the current environment.
-####Example:
+#### Example:
 
 $ ./hsh
 $ env
@@ -221,7 +222,7 @@ setenv
 Usage: setenv [VARIABLE] [VALUE]
 Initializes a new environment variable, or modifies an existing one.
 Upon failure, prints a message to stderr.
-####Example:
+#### Example:
 
 $ ./hsh
 $ setenv NAME Poppy
@@ -242,7 +243,7 @@ $ echo $NAME
 $
 
 
-##What we learned:
+## What we learned:
 How a shell works and finds commands
 Creating, forking and working with processes
 Executing a program from another program
@@ -250,7 +251,7 @@ Handling dynamic memory allocation in a large program
 Pair programming and team work
 Building a test suite to check our own code
 
-###Authors
+### Authors
 👤 Atere Oluwatosin 👤 Joel Paul
 
 
