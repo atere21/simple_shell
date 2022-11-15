@@ -18,21 +18,21 @@
 #define BUF_FLUSH -1
 
 /* for command chaining */
-#define CMD_NORM0
-#define CMD_OR1
-#define CMD_AND2
-#define CMD_CHAIN3
+#define CMD_NORM	0
+#define CMD_OR		1
+#define CMD_AND		2
+#define CMD_CHAIN	3
 
 /* for convert_number() */
-#define CONVERT_LOWERCASE1
-#define CONVERT_UNSIGNED2
+#define CONVERT_LOWERCASE	1
+#define CONVERT_UNSIGNED	2
 
 /* 1 if using system getline() */
 #define USE_GETLINE 0
 #define USE_STRTOK 0
 
-#define HIST_FILE ".simple_shell_history"
-#define HIST_MAX4096
+#define HIST_FILE 	".simple_shell_history"
+#define HIST_MAX	4096
 
 extern char **environ;
 
@@ -166,7 +166,7 @@ int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
-/* toem_errors1.c */
+/* toem_free.c */
 int _erratoi(char *);
 void print_error(info_t *, char *);
 int print_d(int, int);
@@ -182,7 +182,7 @@ int _myhelp(info_t *);
 int _myhistory(info_t *);
 int _myalias(info_t *);
 
-/*toem_getline.c */
+/*toem_access.c */
 ssize_t get_input(info_t *);
 int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
